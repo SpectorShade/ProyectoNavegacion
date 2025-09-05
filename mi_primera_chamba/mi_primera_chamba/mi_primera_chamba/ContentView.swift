@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct Pantalla: View {
+    @State var numero: Int = 0
+    
     var body: some View {
         Spacer()
         
         HStack{
-            Text("Holamundo 2 o trew")
+            Text("Has pulsado \(numero) numero de veces")
                 .font(.title3)
                 .foregroundColor(Color.blue)
                 .multilineTextAlignment(.center)
                 .background(Color.red)
+                .cornerRadius(25)
 
             Text("Hola mundo")
                 .foregroundStyle(Color.blue)
@@ -44,6 +47,9 @@ struct Pantalla: View {
             Text("Texto")
             Text("Empalmado")
         }
+            .onTapGesture {
+                numero += 1
+            }
         
         Spacer()
 
