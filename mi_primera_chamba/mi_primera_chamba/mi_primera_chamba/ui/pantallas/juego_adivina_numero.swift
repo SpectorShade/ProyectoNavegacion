@@ -52,21 +52,18 @@ struct JuegoAdivinaNumero: View{
             case .esta_jugando:
                 validar_intento()
             
-            case .ha_ganado:
+            case .ha_ganado: // Aqui reiniciamos variables
                 intento_del_usuario = 0
                 estado_del_juego = .esta_jugando
                 numero_aleatorio = Int.random(in: 1...100)
                 leyenda = ""
+                entrada_del_usuario = ""
         }
     }
     
     var body: some View{
         VStack{
-            Text("SPOILER: \(numero_aleatorio)")
-                .onTapGesture {
-                    mostrar_spoiler = !mostrar_spoiler
-                }
-                .foregroundStyle((mostrar_spoiler) ? Color.black : Color.white)
+            Spoiler(texto: "Numero \(numero_aleatorio)")
             
             Spacer()
             
@@ -76,14 +73,17 @@ struct JuegoAdivinaNumero: View{
             
             Spacer()
             
-            TextField("Introduce un numero por favor", text: $entrada_del_usuario)
-                .frame(width: 250)
-                .multilineTextAlignment(.center)
+            Botonexto(accion: {
+                        if estado_del_juego != .ha_ganado{
+                                loop_juego()
+                            }
+                            
+                        },
+                      texto: $entrada_del_usuario,
+                      place_holder: "Introduce un numero",
+                      etiqueta: "Intentar"
+                      )
             
-            Button(action: loop_juego){
-                Text("Intentar")
-                Image(systemName: "paperplane.fill")
-            }
             if(estado_del_juego == .ha_ganado){
                 Spacer()
                 
