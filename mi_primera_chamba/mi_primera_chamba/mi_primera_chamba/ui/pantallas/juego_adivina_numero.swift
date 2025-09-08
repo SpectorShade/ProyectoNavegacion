@@ -18,6 +18,7 @@ struct JuegoAdivinaNumero: View{
     @State var intento_del_usuario = 0
     @State var mostrar_spoiler = false
     @State var leyenda: String = ""
+    @State var leyenda_advertencia = false
     
     @State var estado_del_juego: EstadosJuego = EstadosJuego.esta_jugando
     
@@ -34,16 +35,25 @@ struct JuegoAdivinaNumero: View{
             if(numero_del_usuario == numero_aleatorio){
                 leyenda = "Has ganado"
                 estado_del_juego = .ha_ganado
+                leyenda_advertencia = false
+
             }
             else if (numero_del_usuario > numero_aleatorio){
+                entrada_del_usuario = ""
                 leyenda = "Tu intento es mayor"
+                leyenda_advertencia = false
+
             }
             else {
+                entrada_del_usuario = ""
                 leyenda = "Tu intento es menor"
+                leyenda_advertencia = false
             }
         }
         else {
             leyenda = "Por favor introduce un numero valido"
+            entrada_del_usuario = ""
+            leyenda_advertencia = true
         }
     }
     
@@ -92,7 +102,7 @@ struct JuegoAdivinaNumero: View{
                 }
             }
             
-            Text(leyenda)
+            Leyenda(peligro: $leyenda_advertencia, texto: leyenda)
             
             Spacer()
             Spacer()
