@@ -1,11 +1,5 @@
 import SwiftUI
 
-enum TiposLeyenda {
-    case normal
-    case peligro
-    case sombra
-}
-
 
 struct Leyenda: View {
     @Binding var peligro: Bool

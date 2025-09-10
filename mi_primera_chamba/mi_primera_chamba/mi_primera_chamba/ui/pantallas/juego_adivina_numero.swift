@@ -17,8 +17,10 @@ struct JuegoAdivinaNumero: View{
     @State var entrada_del_usuario: String = ""
     @State var intento_del_usuario = 0
     @State var mostrar_spoiler = false
-    @State var leyenda: String = ""
+    @State var comentario: String = ""
     @State var leyenda_advertencia = false
+    
+    @State var lista_jugadores = jugadores_falsos
     
     @State var estado_del_juego: EstadosJuego = EstadosJuego.esta_jugando
     
@@ -27,31 +29,26 @@ struct JuegoAdivinaNumero: View{
     func validar_intento(){
         let numero_del_usuario = Int(entrada_del_usuario)
         
-        // print("La entrada del usaurio es: \(numero_del_usuario)")
-        
         if let numero_del_usuario = numero_del_usuario{
             intento_del_usuario += 1
+            leyenda_advertencia = false
             
             if(numero_del_usuario == numero_aleatorio){
-                leyenda = "Has ganado"
+                comentario = "Has ganado"
                 estado_del_juego = .ha_ganado
-                leyenda_advertencia = false
-
             }
             else if (numero_del_usuario > numero_aleatorio){
                 entrada_del_usuario = ""
-                leyenda = "Tu intento es mayor"
-                leyenda_advertencia = false
+                comentario = "Tu intento es mayor"
 
             }
             else {
                 entrada_del_usuario = ""
-                leyenda = "Tu intento es menor"
-                leyenda_advertencia = false
+                comentario = "Tu intento es menor"
             }
         }
         else {
-            leyenda = "Por favor introduce un numero valido"
+            comentario = "Por favor introduce un numero valido"
             entrada_del_usuario = ""
             leyenda_advertencia = true
         }
@@ -66,7 +63,7 @@ struct JuegoAdivinaNumero: View{
                 intento_del_usuario = 0
                 estado_del_juego = .esta_jugando
                 numero_aleatorio = Int.random(in: 1...100)
-                leyenda = ""
+                comentario = ""
                 entrada_del_usuario = ""
         }
     }
@@ -102,11 +99,20 @@ struct JuegoAdivinaNumero: View{
                 }
             }
             
-            Leyenda(peligro: $leyenda_advertencia, texto: leyenda)
+            Leyenda(peligro: $leyenda_advertencia, texto: comentario)
             
             Spacer()
+            
+            VStack{
+                RenglonColumna2(columna_1: "Nombre", columna_2: "Puntuacion")
+                ForEach(jugadores_falsos){ jugador in
+                    RenglonColumna2(columna_1: jugador.nombre, columna_2: "\(jugador.puntuacion)")
+
+                }
+            }
+            
             Spacer()
-            Spacer()
+            
         }
     }
 }
