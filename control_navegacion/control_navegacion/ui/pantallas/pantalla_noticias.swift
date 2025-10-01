@@ -14,10 +14,11 @@ struct PantallaNoticias: View {
             VStack{
                 ForEach(lista_noticias) { noticia in
                     NavigationLink{
-                        
+                        PantallaNota(noticia: noticia)
                     } label: {
                         Encabezado(noticia_presentar: noticia)
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

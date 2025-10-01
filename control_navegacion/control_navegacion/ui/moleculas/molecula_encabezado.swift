@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Encabezado: View {
     var noticia_presentar: Noticia = Noticia(
-        titular: "404|", cuerpo: "No encontrado", imagen: "una_salchipapa", prioridad: .importante
+        titular: "404", cuerpo: "No encontrado", imagen: "una_salchipapa", prioridad: .importante
     )
     
     var body: some View {
@@ -23,16 +23,32 @@ struct Encabezado: View {
             VStack{
                 HStack{
                     Text(noticia_presentar.titular)
+                        .lineLimit(1)
+                        .fontWeight(.bold)
+                        .foregroundStyle(Color.red)
+                    
                     Spacer()
                 }
                 
+                Spacer()
+                
                 HStack{
                     Text(noticia_presentar.cuerpo)
+                        .lineLimit(2)
                     Spacer()
                 }
             }
         }
-        .padding(15)
+        .frame(height: 80)
+        .padding(10)
+        .background{
+            Rectangle()
+                .foregroundStyle(Color.blue)
+                .cornerRadius(10)
+                //.padding(-10)
+        }
+        .padding(5)
+        
     }
 }
 
