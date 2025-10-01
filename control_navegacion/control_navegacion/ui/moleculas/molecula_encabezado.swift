@@ -10,15 +10,16 @@ import SwiftUI
 
 struct Encabezado: View {
     var noticia_presentar: Noticia = Noticia(
-        titular: "404", cuerpo: "No encontrado", imagen: "una_salchipapa", prioridad: .importante
+        titular: "404", cuerpo: "No encontrado", imagen: "avogato", prioridad: .importante
     )
     
     var body: some View {
         HStack(spacing: 10){
-            Image(systemName: "list.bullet.rectangle")
+            Image(noticia_presentar.imagen)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)
+                .clipShape( Circle() )
             
             VStack{
                 HStack{
@@ -30,7 +31,7 @@ struct Encabezado: View {
                     Spacer()
                 }
                 
-                Spacer()
+                //Spacer()
                 
                 HStack{
                     Text(noticia_presentar.cuerpo)
@@ -39,7 +40,7 @@ struct Encabezado: View {
                 }
             }
         }
-        .frame(height: 80)
+        .frame(minHeight: 50, idealHeight: 75, maxHeight: 100)
         .padding(10)
         .background{
             Rectangle()

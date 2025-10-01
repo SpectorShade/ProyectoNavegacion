@@ -36,7 +36,7 @@ let noticias = [
     Noticia(
         titular: "Banco Central anuncia nueva política monetaria para estabilizar economía",
         cuerpo: "El organismo implementará medidas para controlar la inflación y fortalecer el crecimiento económico en los próximos trimestres.",
-        imagen: "economia",
+        imagen: "avogato",
         prioridad: .importante
     ),
     
