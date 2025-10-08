@@ -8,17 +8,30 @@ import SwiftUI
 
 struct PantallaNoticias: View {
     @State var lista_noticias = noticias
-    
+    @Environment(ControladorGeneral.self) var controlador
+        
     var body: some View {
-        ScrollView{
-            VStack{
-                ForEach(lista_noticias) { noticia in
-                    NavigationLink{
-                        PantallaNota(noticia: noticia)
-                    } label: {
-                        Encabezado(noticia_presentar: noticia)
+        if(controlador.publicaciones.isEmpty){
+            Text("Estamos descargando los datos, por favor espera.")
+        }
+        else{
+            NavigationStack{
+                ScrollView{
+                    LazyVStack{
+                        ForEach(controlador.publicaciones) { publicacion in
+                            
+                            NavigationLink{
+                                //PantallaNota(noticia: noticia)
+                            } label: {
+                                Encabezado(publicacion: publicacion)
+                            }
+                            .onTapGesture {
+                                controlador.publicacion_seleccionada(publicacion.id)
+                            }
+                            .buttonStyle(.plain)
+                            
+                        }
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
@@ -26,8 +39,7 @@ struct PantallaNoticias: View {
 }
 
 #Preview {
-    NavigationStack{
-        PantallaNoticias()
-    }
+    PantallaNoticias()
+        .environment(ControladorGeneral())
 }
 
