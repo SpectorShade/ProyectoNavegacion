@@ -21,7 +21,7 @@ struct PantallaNoticias: View {
                         ForEach(controlador.publicaciones) { publicacion in
                             
                             NavigationLink{
-                                //PantallaNota(noticia: noticia)
+                                PantallaPublicacion(publicacion_actual: publicacion)
                             } label: {
                                 Encabezado(publicacion: publicacion)
                             }
