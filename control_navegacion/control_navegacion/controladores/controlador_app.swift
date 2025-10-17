@@ -17,7 +17,7 @@ class ControladorGeneral{
     var comentarios: [Comentario] = []
     var publicacion_actual: Publicacion? = nil
 
-     init(){
+    init(){
         Task{
             await descargar_publicaciones()
         }
