@@ -16,6 +16,12 @@ class ControladorGeneral{
     var publicaciones: [Publicacion] = []
     var comentarios: [Comentario] = []
     var publicacion_actual: Publicacion? = nil
+
+     init(){
+        Task{
+            await descargar_publicaciones()
+        }
+    }
     
     func descargar_publicaciones() async {
         guard let publicaciones_descargadas: [Publicacion] = await ServicioWeb().descargar_datos(url: "\(url_base)/posts")
