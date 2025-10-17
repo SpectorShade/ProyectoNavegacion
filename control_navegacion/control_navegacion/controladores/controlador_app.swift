@@ -48,7 +48,7 @@ class ControladorGeneral{
     }
     
     func publicacion_seleccionada(_ id: Int){
-//        print("La publicacion es: ")
+        //print("La publicacion es: \(id)")
         for publicacion in publicaciones{
             if publicacion.id == id{
                 publicacion_actual = publicacion
