@@ -32,5 +32,5 @@ struct PantallaPublicacion: View {
 
 #Preview {
     PantallaPublicacion(publicacion_actual: Publicacion(userId: 1, id: 1, title: "404", body: "No encontrado"))
-    .environment(ControladorGeneral())
+        .environment(ControladorGeneral())
 }
