@@ -11,20 +11,28 @@ struct PantallaNota: View {
     @State var noticia: Noticia
     
     var body: some View {
-        VStack{
-            Text(noticia.titular)
-                .fontWeight(.bold)
-                .fontWidth(.expanded)
+        ZStack {
+            Color.black.ignoresSafeArea() // Fondo negro 
             
-            HStack{
-                Image(systemName: "square.and.arrow.down")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
-
-                Text(noticia.cuerpo)
+            VStack(spacing: 20){
+                Text(noticia.titular)
+                    .fontWeight(.bold)
+                    .fontWidth(.expanded)
+                    .foregroundColor(.green) // Título en verde
+                
+                HStack(alignment: .top, spacing: 20){
+                    Image(systemName: "square.and.arrow.down")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150)
+                        .foregroundColor(.green)
+                    
+                    Text(noticia.cuerpo)
+                        .foregroundColor(.white) // Cuerpo en blanco
+                }
+                Spacer()
             }
-            Spacer()
+            .padding()
         }
     }
 }
@@ -32,3 +40,4 @@ struct PantallaNota: View {
 #Preview {
     PantallaNota(noticia: noticias[3])
 }
+
