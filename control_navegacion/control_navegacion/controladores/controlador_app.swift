@@ -68,9 +68,7 @@ class ControladorGeneral{
             }
         }
         
-        if let publicacion_actual = publicacion_actual {
-            descargar_comentarios(publicacion_actual.id)
-            descargar_usuario(publicacion_actual.userId)
-        }
+        descargar_comentarios(publicacion_actual?.id ?? 0)
+        descargar_usuario(publicacion_actual?.userId ?? 0)
     }
 }
