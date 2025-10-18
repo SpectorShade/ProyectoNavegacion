@@ -5,6 +5,7 @@
 //  Created by Jadzia Gallegos on 01/10/25.
 //
 
+import Foundation
 import SwiftUI
 
 struct PantallaNota: View {
