@@ -16,6 +16,7 @@ class ControladorGeneral{
     var publicaciones: [Publicacion] = []
     var comentarios: [Comentario] = []
     var publicacion_actual: Publicacion? = nil
+    var usuario_actual: Usuario? = nil
 
     init(){
         Task{
@@ -46,9 +47,20 @@ class ControladorGeneral{
             await _descargar_comentarios(id_publicacion: id_publicacion)
         }
     }
+
+    private func _descargar_usuario(id_usuario: Int) async {
+        guard let usuario_descargado: Usuario = await ServicioWeb().descargar_datos(url: "\(url_base)/users/\(id_usuario)")
+        else { return }
+        usuario_actual = usuario_descargado
+    }
+    
+    func descargar_usuario(_ id_usuario: Int){
+        Task{
+            await _descargar_usuario(id_usuario: id_usuario)
+        }
+    }
     
     func publicacion_seleccionada(_ id: Int){
-        //print("La publicacion es: \(id)")
         for publicacion in publicaciones{
             if publicacion.id == id{
                 publicacion_actual = publicacion
@@ -56,6 +68,9 @@ class ControladorGeneral{
             }
         }
         
-        descargar_comentarios(publicacion_actual?.id ?? 0)
+        if let publicacion_actual = publicacion_actual {
+            descargar_comentarios(publicacion_actual.id)
+            descargar_usuario(publicacion_actual.userId)
+        }
     }
 }
