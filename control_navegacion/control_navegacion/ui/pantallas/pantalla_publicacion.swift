@@ -13,20 +13,28 @@ struct PantallaPublicacion: View {
     var publicacion_actual: Publicacion
     
     var body: some View {
-        Text("Titulo: \(publicacion_actual.title)")
-            .onAppear{
-                controlador.publicacion_seleccionada(publicacion_actual.id)
-            }
-        Text("\(publicacion_actual.body)")
-        Text("Por: \(publicacion_actual.userId)")
-        
-        ScrollView{
-            VStack{
-                ForEach(controlador.comentarios){comentario in
-                    Text("\(comentario)")
+        VStack(alignment: .leading, spacing: 10){
+            Text("Titulo: \(publicacion_actual.title)")
+                .onAppear{
+                    controlador.publicacion_seleccionada(publicacion_actual.id)
+                }
+            Text("\(publicacion_actual.body)")
+            
+            if let usuario = controlador.usuario_actual {
+                    Text("Por: \(usuario.name)")
+                } else {
+                    Text("Cargando autor...")
+                }
+            
+            ScrollView{
+                VStack{
+                    ForEach(controlador.comentarios){comentario in
+                        Text("\(comentario)")
+                    }
                 }
             }
         }
+        .padding()
     }
 }
 
