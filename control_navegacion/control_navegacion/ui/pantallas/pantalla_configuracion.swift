@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-truct PantallaConfiguracion: View {
+struct PantallaConfiguracion: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea() // Fondo negro
