@@ -12,26 +12,32 @@ struct PantallaPerfil: View {
     @Environment(ControladorGeneral.self) var controlador
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20){
-            if let usuario = app.usuario_actual {
-                Text("Nombre: \(usuario.name)")
-                    .font(.title2)
-                    .bold()
-                
-                Text("Usuario: @\(usuario.username)")
-                    .font(.headline)
-                
-                Text("Correo: \(usuario.email)")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                
-                Spacer()
-            } else {
-                Text("Cargando información del usuario...")
-                    .foregroundColor(.gray)
+        ZStack {
+            Color.black.ignoresSafeArea() // Fondo negro global
+            
+            VStack(alignment: .leading, spacing: 20){
+                if let usuario_actual = app.usuario_actual {
+                    Text("Nombre: \(usuario_actual.name)")
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(.green) // Acento verde
+                    
+                    Text("Usuario: @\(usuario_actual.username)")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    
+                    Text("Correo: \(usuario_actual.email)")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                } else {
+                    Text("Cargando información del usuario...")
+                        .foregroundColor(.gray)
+                }
             }
+            .padding()
         }
-        .padding()
     }
 }
 
