@@ -13,61 +13,70 @@ struct PantallaPublicacion: View {
     var publicacion_actual: Publicacion
     
     var body: some View{
-        VStack(alignment: .leading, spacing: 20){
-            if let publicacion = app.publicacion_actual{
-                Text(publicacion.title)
-                    .font(.title)
-                    .bold()
-                
-                if let usuario = app.usuario_actual{
-                    Text("Autor: \(usuario.name)")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                } else {
-                    Text("Cargando autor...")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                
-                Text(publicacion.body)
-                    .font(.body)
-                    .padding(.bottom, 10)
-                
-                Divider()
-                
-                Text("Comentarios:")
-                    .font(.headline)
-                
-                if app.comentarios.isEmpty{
-                    Text("Cargando comentarios...")
-                        .foregroundColor(.gray)
-                }
-                else{
-                    ScrollView{
-                        VStack(alignment: .leading, spacing: 15){
-                            ForEach(app.comentarios){ comentario in
-                                VStack(alignment: .leading, spacing: 5){
-                                    Text(comentario.name)
-                                        .bold()
-                                    Text(comentario.body)
-                                        .font(.body)
-                                    Text("Por: \(comentario.email)")
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
+        ZStack {
+            Color.black.ignoresSafeArea() // Fondo negro global
+            
+            VStack(alignment: .leading, spacing: 20){
+                if let publicacion = controlador.publicacion_actual {
+                    Text(publicacion.title)
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.green) // Título en verde
+                    
+                    if let usuario = controlador.usuario_actual {
+                        Text("Autor: \(usuario.name)")
+                            .font(.subheadline)
+                            .foregroundColor(.green) // Autor en verde también
+                    } else {
+                        Text("Cargando autor...")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    
+                    Text(publicacion.body)
+                        .font(.body)
+                        .foregroundColor(.white)
+                        .padding(.bottom, 10)
+                    
+                    Divider()
+                        .background(Color.green.opacity(0.5))
+                    
+                    Text("Comentarios:")
+                        .font(.headline)
+                        .foregroundColor(.green)
+                    
+                    if controlador.comentarios.isEmpty {
+                        Text("Cargando comentarios...")
+                            .foregroundColor(.gray)
+                    } else {
+                        ScrollView{
+                            VStack(alignment: .leading, spacing: 15){
+                                ForEach(controlador.comentarios){ comentario in
+                                    VStack(alignment: .leading, spacing: 5){
+                                        Text(comentario.name)
+                                            .bold()
+                                            .foregroundColor(.green)
+                                        Text(comentario.body)
+                                            .font(.body)
+                                            .foregroundColor(.white)
+                                        Text("Por: \(comentario.email)")
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding()
+                                    .background(Color.green.opacity(0.1))
+                                    .cornerRadius(10)
                                 }
-                                .padding()
-                                .background(Color(white: 0.95))
-                                .cornerRadius(10)
                             }
                         }
                     }
+                } else {
+                    Text("Selecciona una publicación.")
+                        .foregroundColor(.white)
                 }
             }
-            else{
-                Text("Selecciona una publicación.")
-            }
+            .padding()
         }
-        .padding()
     }
 }
 
