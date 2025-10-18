@@ -4,10 +4,26 @@
 //
 //  Created by Jadzia Gallegos on 29/09/25.
 //
+
+import Foundation
 import SwiftUI
 
-struct PantallaConfiguracion: View {
+truct PantallaConfiguracion: View {
     var body: some View {
-        Text("Pantalla de configuracion")
+        ZStack {
+            Color.black.ignoresSafeArea() // Fondo negro
+            
+            VStack {
+                Text("Pantalla de configuración")
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(.green) // Acento verde
+            }
+            .padding()
+        }
     }
+}
+
+#Preview {
+    PantallaConfiguracion()
 }
