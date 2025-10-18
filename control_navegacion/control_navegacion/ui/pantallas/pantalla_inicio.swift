@@ -25,6 +25,24 @@ struct PantallaInicio: View{
                 } label: {
                     Text("Ir a pantalla galeria")
                 }
+
+                NavigationLink {
+                    PantallaNoticias()
+                } label: {
+                    Text("Ir a pantalla noticias")
+                }
+                
+                NavigationLink {
+                    PantallaPublicacion(publicacion_actual: Publicacion(userId: 1, id: 1, title: "404", body: "No encontrado"))
+                } label: {
+                    Text("Ir a pantalla publicación")
+                }
+                
+                NavigationLink {
+                    PantallaPerfilUsuario()
+                } label: {
+                    Text("Ir a pantalla perfil de usuario")
+                }
             }
         }
     }
