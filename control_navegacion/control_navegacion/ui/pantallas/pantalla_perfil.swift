@@ -16,7 +16,7 @@ struct PantallaPerfil: View {
             Color.black.ignoresSafeArea() // Fondo negro global
             
             VStack(alignment: .leading, spacing: 20){
-                if let usuario_actual = app.usuario_actual {
+                if let usuario_actual = controlador.usuario_actual {
                     Text("Nombre: \(usuario_actual.name)")
                         .font(.title2)
                         .bold()
