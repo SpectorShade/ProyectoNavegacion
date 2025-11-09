@@ -61,7 +61,7 @@ struct PantallaInicio: View{
                     }
                     
                     NavigationLink {
-                        PantallaPerfilUsuario()
+                        PantallaPerfil()
                     } label: {
                         Text("Ir a pantalla perfil de usuario")
                             .foregroundColor(.white)
