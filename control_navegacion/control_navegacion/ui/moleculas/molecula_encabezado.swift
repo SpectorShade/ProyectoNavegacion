@@ -27,7 +27,7 @@ struct Encabezado: View {
                     Text(publicacion.title)
                         .lineLimit(1)
                         .fontWeight(.bold)
-                        .foregroundStyle(Color.red)
+                        .foregroundStyle(Color.white)
                     
                     Spacer()
                 }
@@ -45,7 +45,7 @@ struct Encabezado: View {
         .padding(10)
         .background{
             Rectangle()
-                .foregroundStyle(Color.blue)
+                .foregroundStyle(Color.green)
                 .cornerRadius(10)
                 //.padding(-10)
         }

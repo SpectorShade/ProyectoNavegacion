@@ -21,7 +21,7 @@ struct NavegacionPrincipal: View {
         TabView(selection: $pestaña_actual){
             Tab("Watch Now", systemImage: "play", value: .Inicio){
                 NavigationStack{
-                    PantallaInicio()
+                    PantallaInicio(pestaña_actual: $pestaña_actual)
                 }
             }
             .badge("STFU")

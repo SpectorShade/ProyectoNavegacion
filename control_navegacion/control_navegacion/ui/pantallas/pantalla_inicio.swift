@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PantallaInicio: View{
+    @Binding var pestaña_actual: Pestañas
     var body: some View{
         ZStack {
             Color.black.ignoresSafeArea() // Fondo negro global
@@ -20,9 +21,9 @@ struct PantallaInicio: View{
                         .bold()
                         .foregroundColor(.green) // Acento verde
                     
-                    NavigationLink {
-                        PantallaConfiguracion()
-                    } label: {
+                    Button {
+                        pestaña_actual = .Configuracion
+                    }label: {
                         Text("Ir a pantalla configuración")
                             .foregroundColor(.white)
                             .padding()
@@ -30,8 +31,8 @@ struct PantallaInicio: View{
                             .cornerRadius(8)
                     }
                     
-                    NavigationLink {
-                        PantallaGaleria()
+                    Button {
+                        pestaña_actual = .Galeria
                     } label: {
                         Text("Ir a pantalla galería")
                             .foregroundColor(.white)
@@ -40,8 +41,8 @@ struct PantallaInicio: View{
                             .cornerRadius(8)
                     }
 
-                    NavigationLink {
-                        PantallaNoticias()
+                    Button {
+                        pestaña_actual = .Noticias
                     } label: {
                         Text("Ir a pantalla noticias")
                             .foregroundColor(.white)
@@ -51,7 +52,7 @@ struct PantallaInicio: View{
                     }
                     
                     NavigationLink {
-                        PantallaPublicacion(publicacion_actual: Publicacion(userId: 1, id: 1, title: "404", body: "No encontrado"))
+                        PantallaPublicacion()
                     } label: {
                         Text("Ir a pantalla publicación")
                             .foregroundColor(.white)
@@ -77,6 +78,6 @@ struct PantallaInicio: View{
 }
 
 #Preview {
-    PantallaInicio()
+    PantallaInicio(pestaña_actual: .constant(.Inicio))
         .environment(ControladorGeneral())
 }

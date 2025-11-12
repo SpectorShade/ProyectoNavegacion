@@ -20,7 +20,7 @@ struct PantallaGaleria: View {
                     .foregroundColor(.green) // Acento verde
                 
                 NavigationLink{
-                    PantallaInicio()
+                    PantallaInicio(pestaña_actual: .constant(.Inicio))
                 } label: {
                     Text("Ir a inicio")
                         .foregroundColor(.white)
